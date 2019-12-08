@@ -11,12 +11,18 @@ code {
 }
 
 .grid-container {
+  margin: auto;
+  padding: 1em;
+  width: 50%;
   display: grid;
+  grid-template-columns: repeat(4, 150px);
+  grid-gap: 2em;
+  grid-row-gap: 2em;
+  background-color: #fff;
+  color: #444;
 }
 
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 1em;
-  text-align: center;
+  border: #444 2px solid;
+  box-shadow: #585858 2px 2px 8px;
 }
