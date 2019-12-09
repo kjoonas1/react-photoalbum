@@ -10,19 +10,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+$grid-columns: 3;
+$grid-width: 100% / $grid-columns;
+
 .grid-container {
-  margin: auto;
-  padding: 1em;
-  width: 50%;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 150px);
-  grid-gap: 2em;
-  grid-row-gap: 2em;
+  grid-template-columns: repeat($grid-columns, $grid-width);
+  grid-template-rows: auto;
+  justify-content: space-evenly;
+  gap: 0.25em;
+  row-gap: 2em;
   background-color: #fff;
   color: #444;
+  padding: 1em 0;
 }
 
 .grid-item {
+  margin: auto;
   border: #444 2px solid;
   box-shadow: #585858 2px 2px 8px;
 }
