@@ -4,6 +4,7 @@ import Photo from "./Photo"
 import { Link } from "react-router-dom"
 import { requestPhotosByAlbumId } from "../reducers/photoReducer"
 import { connect } from "react-redux"
+import shortid from "shortid"
 
 export const PhotoGrid = props => {
     // eslint-disable-next-line
@@ -11,25 +12,30 @@ export const PhotoGrid = props => {
     const photos = useSelector(state => state.photos)
     const [albumId, setAlbumId] = useState(2)
 
-    const onClick = (photo) => {
-        setSelectedPhoto(photo.id)
+    const onClick = photo => {
+        setSelectedPhoto(photo)
         console.log(photo)
-        // TODO: forward to page where full size photo is displayed
     }
 
     return (
         <>
             <div className="grid-container">
-                {photos.length ? photos.map((photo, key) =>
-                    <Photo image={photo} key={"photo" + key} onClick={() => onClick(photo)} />
-                ) : null}
-
+                {photos.length
+                    ? photos.map(photo => (
+                        <div className="grid-link" key={shortid.generate()}>
+                            <Link to={`photos/${photo.id}`} onClick={() => onClick(photo)}>
+                                <Photo className={"grid-item"} image={photo} />
+                            </Link>
+                        </div>
+                    ))
+                    : null}
             </div>
-            <Link to="" onClick={() => {
-                props.requestPhotosByAlbumId(albumId)
-                setAlbumId(albumId+1)
-                console.log(props)
-            }}>
+            <Link
+                to=""
+                onClick={() => {
+                    props.requestPhotosByAlbumId(albumId).then(() => setAlbumId(albumId + 1))
+                }}
+            >
                 We want more
             </Link>
         </>

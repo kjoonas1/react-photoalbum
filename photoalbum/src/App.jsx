@@ -8,6 +8,7 @@ import {
     Switch,
     Route
 } from "react-router-dom"
+import PhotoDetails from "./components/PhotoDetails"
 
 
 const App = (props) => {
@@ -23,10 +24,10 @@ const App = (props) => {
                 } />
                 {/*<Route exact path="/photos" render={() =>
                     <PhotoGrid />
-                } />
-                 <Route exact path="/photos/:id" render={({ match }) =>
-                    <PhotoGrid photo={photoById(match.params.id)} />
-                } /> */}
+                } />*/}
+                <Route exact path="/photos/:id" render={() =>
+                    <PhotoDetails />
+                } /> 
             </Switch>
         </Router>
     )

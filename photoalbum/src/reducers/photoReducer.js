@@ -15,6 +15,15 @@ export const photoReducer = (state = initialState, action) => {
     }
 }
 
+/* export const photoAlbumIdReducer = (state = 1, action) => {
+    switch (action.type) {
+        case "SET_ALBUM_ID":
+            return { ...state, photoAlbumId: action.data}
+        default:
+            return state
+    }
+} */
+
 export const initializePhotos = () => {
     return async dispatch => {
         const photos = await fetchPhotos()
