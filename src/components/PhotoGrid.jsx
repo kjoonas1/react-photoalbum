@@ -18,7 +18,7 @@ export const PhotoGrid = props => {
     return (
         <>
             <div className="grid-container">
-                {photos.length
+                {photos && photos.length
                     ? photos.map(photo => (
                         <div className="grid-link" key={shortid.generate()}>
                             <Link to={`photos/${photo.id}`} onClick={() => onClick(photo)}>
