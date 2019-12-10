@@ -9,20 +9,13 @@ export const photoReducer = (state = initialState, action) => {
         case "SET_PHOTOS":
             return { ...state, photos: action.data }
         case "ADD_PHOTOS":
-            return { ...state, photos: [...state.photos, ...action.data]}
+            return { ...state, photos: [...state.photos, ...action.data] }
+        case "SET_SELECTED_PHOTO":
+            return { ...state, selectedPhoto: action.data }
         default:
             return state
     }
 }
-
-/* export const photoAlbumIdReducer = (state = 1, action) => {
-    switch (action.type) {
-        case "SET_ALBUM_ID":
-            return { ...state, photoAlbumId: action.data}
-        default:
-            return state
-    }
-} */
 
 export const initializePhotos = () => {
     return async dispatch => {
@@ -40,6 +33,15 @@ export const requestPhotosByAlbumId = albumId => {
         dispatch({
             type: "ADD_PHOTOS",
             data: photos
+        })
+    }
+}
+
+export const setSelectedPhoto = selectedPhoto => {
+    return dispatch => {
+        dispatch({
+            type: "SET_SELECTED_PHOTO",
+            data: selectedPhoto
         })
     }
 }

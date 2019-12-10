@@ -9,7 +9,7 @@ import { BrowserRouter as Router } from "react-router-dom"
 
 describe("Photo Grid", () => {
     const mockStore = configureStore()
-    const mockComponent = (store) => render(
+    const mockComponent = store => render(
         <Provider store={store}>
             <Router>
                 <PhotoGrid />

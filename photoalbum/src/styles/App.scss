@@ -20,3 +20,34 @@
 .App-link {
   color: #09d3ac;
 }
+
+.container {
+  max-width: 768px;
+  margin: auto;
+  padding: 2em 0em 5em;
+  text-align: center;
+}
+
+$linkColor: black;
+$linkHoverColor: #808080;
+
+a:link {
+  font-size: 1.5rem;
+  color: $linkColor;
+}
+
+a:visited {
+  color: $linkColor;
+}
+
+a:focus {
+  color: $linkColor;
+}
+
+a:hover {
+  color: $linkHoverColor;
+}
+
+a:active {
+  color: $linkColor
+}
