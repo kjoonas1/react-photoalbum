@@ -16,6 +16,10 @@
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.15"
   },
+  "engines": {
+    "npm": "6.11.3",
+    "node": "10.17.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
