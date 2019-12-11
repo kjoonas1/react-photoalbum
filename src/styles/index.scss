@@ -14,12 +14,14 @@ $grid-columns: 3;
 $grid-width: 100% / $grid-columns;
 
 .grid-container {
-  width: 100%;
+  width: 90%;
+  margin: auto;
   display: grid;
   grid-template-columns: repeat($grid-columns, $grid-width);
   grid-template-rows: auto;
   justify-content: space-evenly;
   row-gap: 1em;
+  column-gap: 1em;
   background-color: #fff;
   color: #444;
   padding: 1em 0;

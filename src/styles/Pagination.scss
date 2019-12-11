@@ -1,8 +1,9 @@
 .pagination {
   display: inline-block;
+  margin-top: 3em;
 }
 
-.pagination a {
+.pagination-link {
   color: rgb(43, 43, 43);
   float: left;
   padding: 0.25em 0.5em;

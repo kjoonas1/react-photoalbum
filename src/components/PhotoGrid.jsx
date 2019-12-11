@@ -17,8 +17,6 @@ export const PhotoGrid = ({ setAlbumId, setSelectedPhoto, requestPhotosByAlbumId
     const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage
     const currentPhotos = photos.slice(indexOfFirstPhoto, indexOfLastPhoto)
 
-
-
     // Tämä pitäisi toteuttaa kyselynä palvelimelta
     const albumCount = 100
     const photosPerAlbum = 50
