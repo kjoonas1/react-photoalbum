@@ -1,3 +1,5 @@
+Deployed in Heroku: https://powerful-refuge-06227.herokuapp.com/
+
 Created by using create-react-app.
 
 Tech stack: ReactJS, Redux + Thunk
