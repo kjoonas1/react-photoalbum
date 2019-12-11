@@ -15,6 +15,7 @@ const store = createStore(
     )
 )
 
+// Push latest state to localStorage
 store.subscribe(()=>{
     localStorage.setItem("reduxState", JSON.stringify(store.getState()))
 })

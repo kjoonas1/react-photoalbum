@@ -11,31 +11,42 @@ import {
     Redirect
 } from "react-router-dom"
 import PhotoDetails from "./components/PhotoDetails"
+import { Link } from "react-router-dom"
 
 const App = props => {
     useEffect(() => {
         props.initializePhotos()
     }, [props])
 
-    const selectedPhoto = useSelector(state => state.selectedPhoto)
+    const selectedPhoto = useSelector(state => state.selectedPhoto) // Using a hook instead mapStateToProps
+
+    // Error message for displaying if something went wrong
+    const errorMessage = <div className="error-message">
+        <h4>Content seems to be missing</h4>
+        <h5>
+            <Link to="/">
+                Try again
+            </Link>
+        </h5>
+    </div>
 
     return (
         <div className="container">
             <Router>
                 <Switch>
                     <Route exact path="/" render={() =>
-                        <PhotoGrid />
+                        <PhotoGrid errorMessage={errorMessage} />
                     } />
                     <Redirect exact from="/photos" to="/" />
                     <Route exact path="/photos/:id" render={() =>
-                        <PhotoDetails returnLinkUrl={"/"} image={selectedPhoto} />
+                        selectedPhoto ?
+                            <PhotoDetails returnLinkUrl={"/"} image={selectedPhoto} />
+                            : errorMessage
                     } />
                 </Switch>
             </Router>
         </div>
     )
 }
-
-
 
 export default connect(null, { initializePhotos })(App)

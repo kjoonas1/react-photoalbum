@@ -25,13 +25,56 @@ $grid-width: 100% / $grid-columns;
   padding: 1em 0;
 }
 
+.detailed-photo {
+  max-width: 100%;
+}
+
 .grid-item {
+  display: block;
+  max-width: 100%;
+  height: auto;
   margin: auto;
-  border: #444 2px solid;
-  box-shadow: #585858 2px 2px 8px;
+  border: #444 1px solid;
+  box-shadow: #cccccc 2px 2px 8px;
+  opacity: 0.75;
+  transition: 0.2s;
+}
+.grid-item:hover {
+  opacity: 1;
+  box-shadow: #7e7e7e 2px 2px 8px;
 }
 
 .grid-link {
   margin: 0;
   text-align:center;
+}
+
+.animate-top {
+  position: relative;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 1s;
+  animation-name: animatetop;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    bottom: 50px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    bottom: 50px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
 }
