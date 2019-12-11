@@ -54,7 +54,7 @@ export const PhotoGrid = ({ setAlbumId, setSelectedPhoto, requestPhotosByAlbumId
                         }}
                     >
                     
-                    {isLoading ? <Spinner /> : albumId <= albumCount && currentPage === pageNumbers.length ? <p>Show more...</p> : null}
+                        {isLoading ? <Spinner /> : albumId <= albumCount && currentPage === pageNumbers.length ? <p>Show more...</p> : null}
                     </Link></> : errorMessage}
         </>
     )
