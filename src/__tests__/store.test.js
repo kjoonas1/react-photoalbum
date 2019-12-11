@@ -12,6 +12,6 @@ describe("Store", () => {
         })
 
         expect(store.getState().photos).toBe("TEST")
-        expect(localStorage.getItem("reduxState")).toContain("{\"isFetching\":false,\"photos\":\"TEST\"}")
+        expect(localStorage.getItem("reduxState")).toContain("{\"isFetching\":false,\"errorMessage\":null,\"photos\":\"TEST\"}")
     })
 })

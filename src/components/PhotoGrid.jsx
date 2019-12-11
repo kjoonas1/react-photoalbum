@@ -9,16 +9,19 @@ import Spinner from "./Spinner"
 
 export const PhotoGrid = props => {
     const photos = useSelector(state => state.photos)
-    const isLoading = useSelector(state => state.isFetching)
+
     const [albumId, setAlbumId] = useState(2)
 
+    const error = props.error
+    const isLoading = props.isLoading
+    
     const onClick = photo => {
         props.setSelectedPhoto(photo)
     }
 
     return (
         <>
-            {photos && photos.length ?
+            {photos && photos.length && error === null ?
                 <>
                     <div className="grid-container animate-top">
                         { photos.map(photo => (
@@ -40,6 +43,5 @@ export const PhotoGrid = props => {
         </>
     )
 }
-
 
 export default connect(null, { setSelectedPhoto, requestPhotosByAlbumId })(PhotoGrid)

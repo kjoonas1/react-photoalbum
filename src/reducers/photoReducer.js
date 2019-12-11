@@ -7,15 +7,15 @@ const initialState = {
 export const photoReducer = (state = initialState, action) => {
     switch (action.type) {
         case "GET_PHOTOS_REQUEST":
-            return { ...state, isFetching: true }
+            return { ...state, isFetching: true, errorMessage: null }
         case "GET_PHOTOS_SUCCESS":
-            return { ...state, isFetching: false, photos: action.payload }
+            return { ...state, isFetching: false, errorMessage: null, photos: action.payload }
         case "GET_PHOTOS_FAILURE":
             return { ...state, isFetching: false, errorMessage: action.payload.message }
         case "ADD_PHOTOS_REQUEST":
-            return { ...state, isFetching: true }
+            return { ...state, isFetching: true, errorMessage: null  }
         case "ADD_PHOTOS_SUCCESS":
-            return { ...state, isFetching: false, photos: [...state.photos, ...action.payload] }
+            return { ...state, isFetching: false, errorMessage: null, photos: [...state.photos, ...action.payload] }
         case "ADD_PHOTOS_FAILURE":
             return { ...state, isFetching: false, errorMessage: action.payload.message }
         case "SET_SELECTED_PHOTO":

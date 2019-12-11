@@ -18,7 +18,9 @@ const App = props => {
         props.initializePhotos()
     }, [props])
 
-    const selectedPhoto = useSelector(state => state.selectedPhoto) // Using a hook instead mapStateToProps
+    const selectedPhoto = useSelector(state => state.selectedPhoto)
+    const isLoading = useSelector(state => state.isFetching)
+    const error = useSelector(state => state.errorMessage)
 
     // Error message for displaying if something went wrong
     const errorMessage = <div className="error-message">
@@ -35,10 +37,10 @@ const App = props => {
             <Router>
                 <Switch>
                     <Route exact path="/" render={() =>
-                        <PhotoGrid errorMessage={errorMessage} />
+                        <PhotoGrid isLoading={isLoading} error={error} errorMessage={errorMessage} />
                     } />
                     <Redirect exact from="/photos" to="/" />
-                    <Route exact path="/photos/:id" render={() =>
+                    <Route exact path="/photos/:is" render={() =>
                         selectedPhoto ?
                             <PhotoDetails returnLinkUrl={"/"} image={selectedPhoto} />
                             : errorMessage
