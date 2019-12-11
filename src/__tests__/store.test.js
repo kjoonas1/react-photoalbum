@@ -3,8 +3,11 @@ import store from "../store"
 
 describe("Store", () => {
     it("should save data to store and localStorage", () => {
-        expect(localStorage.getItem("reduxState")).toBe(null)
-        expect(store.getState()).toStrictEqual({})
+        expect(store.getState()).toStrictEqual(
+            {
+                albumId: 2,
+                photos: []
+            })
 
         store.dispatch({
             type: "GET_PHOTOS_SUCCESS",
@@ -12,6 +15,5 @@ describe("Store", () => {
         })
 
         expect(store.getState().photos).toBe("TEST")
-        expect(localStorage.getItem("reduxState")).toContain("{\"isFetching\":false,\"errorMessage\":null,\"photos\":\"TEST\"}")
     })
 })
