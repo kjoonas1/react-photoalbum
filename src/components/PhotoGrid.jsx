@@ -18,6 +18,9 @@ export const PhotoGrid = props => {
         props.setSelectedPhoto(photo)
     }
 
+    // Tämä pitäisi toteuttaa kyselynä palvelimelta
+    const albumCount = 100
+
     return (
         <>
             {photos && photos.length && error === null ?
@@ -38,7 +41,7 @@ export const PhotoGrid = props => {
                             props.setAlbumId(albumId+1)
                             props.requestPhotosByAlbumId(albumId)
                         }}
-                    > {isLoading ? <Spinner /> : <p>Show more...</p>}
+                    > {isLoading ? <Spinner /> : albumId <= albumCount ? <p>Show more...</p> : null}
                     </Link></> : props.errorMessage}
         </>
     )
