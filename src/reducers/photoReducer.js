@@ -6,12 +6,20 @@ const initialState = {
 
 export const photoReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "SET_PHOTOS":
-            return { ...state, photos: action.data }
-        case "ADD_PHOTOS":
-            return { ...state, photos: [...state.photos, ...action.data] }
+        case "GET_PHOTOS_REQUEST":
+            return { ...state, isFetching: true }
+        case "GET_PHOTOS_SUCCESS":
+            return { ...state, isFetching: false, photos: action.payload }
+        case "GET_PHOTOS_FAILURE":
+            return { ...state, isFetching: false, errorMessage: action.payload.message }
+        case "ADD_PHOTOS_REQUEST":
+            return { ...state, isFetching: true }
+        case "ADD_PHOTOS_SUCCESS":
+            return { ...state, isFetching: false, photos: [...state.photos, ...action.payload] }
+        case "ADD_PHOTOS_FAILURE":
+            return { ...state, isFetching: false, errorMessage: action.payload.message }
         case "SET_SELECTED_PHOTO":
-            return { ...state, selectedPhoto: action.data }
+            return { ...state, selectedPhoto: action.payload }
         default:
             return state
     }
@@ -19,21 +27,19 @@ export const photoReducer = (state = initialState, action) => {
 
 export const initializePhotos = () => {
     return async dispatch => {
-        const photos = await fetchPhotos()
-        dispatch({
-            type: "SET_PHOTOS",
-            data: photos
-        })
+        dispatch({ type: "GET_PHOTOS_REQUEST" })
+        await fetchPhotos()
+            .then((photos) => dispatch({ type: "GET_PHOTOS_SUCCESS", payload: photos.data }))
+            .catch((error) => dispatch({ type: "GET_PHOTOS_FAILURE", payload: error }))
     }
 }
 
 export const requestPhotosByAlbumId = albumId => {
     return async dispatch => {
-        const photos = await fetchPhotos(albumId)
-        dispatch({
-            type: "ADD_PHOTOS",
-            data: photos
-        })
+        dispatch({ type: "ADD_PHOTOS_REQUEST" })
+        await fetchPhotos(albumId)
+            .then((photos) => dispatch({ type: "ADD_PHOTOS_SUCCESS", payload: photos.data }))
+            .catch((error) => dispatch({ type: "ADD_PHOTOS_FAILURE", payload: error }))
     }
 }
 
@@ -41,7 +47,7 @@ export const setSelectedPhoto = selectedPhoto => {
     return dispatch => {
         dispatch({
             type: "SET_SELECTED_PHOTO",
-            data: selectedPhoto
+            payload: selectedPhoto
         })
     }
 }

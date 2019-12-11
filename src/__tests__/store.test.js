@@ -7,11 +7,11 @@ describe("Store", () => {
         expect(store.getState()).toStrictEqual({})
 
         store.dispatch({
-            type: "SET_PHOTOS",
-            data: "TEST"
+            type: "GET_PHOTOS_SUCCESS",
+            payload: "TEST"
         })
 
         expect(store.getState().photos).toBe("TEST")
-        expect(localStorage.getItem("reduxState")).toBe("{\"photos\":\"TEST\"}")
+        expect(localStorage.getItem("reduxState")).toContain("{\"isFetching\":false,\"photos\":\"TEST\"}")
     })
 })

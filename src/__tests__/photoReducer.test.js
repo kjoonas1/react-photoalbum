@@ -3,7 +3,7 @@ import photoReducer from "../reducers/photoReducer"
 
 describe("Photo reducer", () => {
     it("should return an array with 2 objects", () => {
-        const reducer = photoReducer({}, { data: [{}, {}], type: "SET_PHOTOS" })
+        const reducer = photoReducer({}, { payload: [{}, {}], type: "GET_PHOTOS_SUCCESS" })
         expect(reducer.photos.length).toBe(2)
     })
 
@@ -42,7 +42,7 @@ describe("Photo reducer", () => {
             }
         ]
 
-        const reducer = photoReducer({photos: initialState}, { data: photos, type: "ADD_PHOTOS" })
+        const reducer = photoReducer({photos: initialState}, { payload: photos, type: "ADD_PHOTOS_SUCCESS" })
         expect(reducer.photos).toStrictEqual(initialState.concat(photos))
     })
 })
