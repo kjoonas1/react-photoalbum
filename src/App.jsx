@@ -26,7 +26,7 @@ const App = props => {
     const errorMessage = <div className="error-message">
         <h4>Content seems to be missing</h4>
         <h5>
-            <Link to="/">
+            <Link to="/" onClick={() => window.location.reload()}>
                 Try again
             </Link>
         </h5>
@@ -40,7 +40,7 @@ const App = props => {
                         <PhotoGrid isLoading={isLoading} error={error} errorMessage={errorMessage} />
                     } />
                     <Redirect exact from="/photos" to="/" />
-                    <Route exact path="/photos/:is" render={() =>
+                    <Route exact path="/photos/:id" render={() =>
                         selectedPhoto ?
                             <PhotoDetails returnLinkUrl={"/"} image={selectedPhoto} />
                             : errorMessage
