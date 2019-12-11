@@ -2,7 +2,7 @@ import { fetchPhotos } from "../services/photos"
 
 const initialState = {
     photos: [],
-    albumId: 2
+    albumId: 1
 }
 
 export const photoReducer = (state = initialState, action) => {

@@ -41,7 +41,6 @@ describe("Photo reducer", () => {
                 thumbnailUrl: "https://via.placeholder.com/150/d32776"
             }
         ]
-
         const reducer = photoReducer({photos: initialState}, { payload: photos, type: "ADD_PHOTOS_SUCCESS" })
         expect(reducer.photos).toStrictEqual(initialState.concat(photos))
     })

@@ -5,7 +5,7 @@ describe("Store", () => {
     it("should save data to store and localStorage", () => {
         expect(store.getState()).toStrictEqual(
             {
-                albumId: 2,
+                albumId: 1,
                 photos: []
             })
 

@@ -11,7 +11,7 @@ describe("Photo Grid", () => {
     const mockComponent = store => render(
         <Provider store={store}>
             <Router>
-                <PhotoGrid error={null} />
+                <PhotoGrid  />
             </Router>
         </Provider>
     )
