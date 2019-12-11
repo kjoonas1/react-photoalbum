@@ -7,7 +7,7 @@ import Spinner from "./Spinner"
 import Photos from "./Photos"
 import Pagination from "./Pagination"
 
-export const PhotoGrid = props => {
+export const PhotoGrid = ({ setAlbumId, setSelectedPhoto, requestPhotosByAlbumId, errorMessage, error, isLoading }) => {
     const photos = useSelector(state => state.photos)
     const albumId = useSelector(state => state.albumId)
 
@@ -28,8 +28,8 @@ export const PhotoGrid = props => {
     }
 
     useEffect(() => {
-        props.requestPhotosByAlbumId(albumId)
-    }, [albumId])
+        requestPhotosByAlbumId(albumId)
+    }, [albumId, requestPhotosByAlbumId])
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
@@ -42,25 +42,20 @@ export const PhotoGrid = props => {
 
     return (
         <>
-
-
-            {photos && photos.length && props.error === null ?
+            {photos && photos.length && error === null ?
                 <>
                     <Photos onClick={onClick} photos={currentPhotos} />
                     <Pagination activePage={currentPage} pageNumbers={pageNumbers} paginate={paginate} />
-
                     <Link
                         className="show-more-link"
                         to=""
                         onClick={() => {
-                            props.setAlbumId(albumId + 1)
+                            setAlbumId(albumId + 1)
                         }}
                     >
                     
-                        {props.isLoading ? <Spinner /> : albumId <= albumCount && currentPage === pageNumbers.length ? <p>Show more...</p> : null}
-                    </Link></> : props.errorMessage}
-
-
+                    {isLoading ? <Spinner /> : albumId <= albumCount && currentPage === pageNumbers.length ? <p>Show more...</p> : null}
+                    </Link></> : errorMessage}
         </>
     )
 }
