@@ -8,6 +8,6 @@ Tests written with JEST.
 
 How to run locally:
 - git clone https://github.com/kjoonas1/react-photoalbum.git
-- cd react-photoalbum/photoalbum
+- cd react-photoalbum
 - npm install
 - npm start
