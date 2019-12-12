@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { requestPhotosByAlbumId, setSelectedPhoto, setAlbumId } from "../reducers/photoReducer"
@@ -10,6 +10,7 @@ import Pagination from "./Pagination"
 export const PhotoGrid = ({ setAlbumId, setSelectedPhoto, requestPhotosByAlbumId, errorMessage, error, isLoading }) => {
     const photos = useSelector(state => state.photos)
     const albumId = useSelector(state => state.albumId)
+    const lastAlbumId = useRef(albumId)
 
     const [photosPerPage] = useState(9)
     const [currentPage, setCurrentPage] = useState(1)
@@ -26,7 +27,8 @@ export const PhotoGrid = ({ setAlbumId, setSelectedPhoto, requestPhotosByAlbumId
     }
 
     useEffect(() => {
-        requestPhotosByAlbumId(albumId)
+        if (albumId !== lastAlbumId.current)
+            requestPhotosByAlbumId(albumId)
     }, [albumId, requestPhotosByAlbumId])
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
@@ -36,7 +38,6 @@ export const PhotoGrid = ({ setAlbumId, setSelectedPhoto, requestPhotosByAlbumId
     for (let i = 1; i <= Math.ceil(totalPhotos / photosPerPage); i++) {
         pageNumbers.push(i)
     }
-
 
     return (
         <>
@@ -51,9 +52,9 @@ export const PhotoGrid = ({ setAlbumId, setSelectedPhoto, requestPhotosByAlbumId
                             setAlbumId(albumId + 1)
                         }}
                     >
-                    
+
                         {isLoading ? <Spinner /> : albumId <= albumCount && currentPage === pageNumbers.length ? <p>Show more...</p> : null}
-                    </Link></> : errorMessage}
+                    </Link></> : error !== null ? errorMessage : null}
         </>
     )
 }
